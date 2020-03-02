@@ -1,10 +1,26 @@
-<% include ./partials/header %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <title>Hive Mind</title>
+</head>
 
+<body>
 
-    <main>
+        <nav>
+            <div id="logo">
+                <a href="" class="brand-logo left">Hive Mind</a>
+            </div>
+            <div id="login-links">
+              <% if (user) { %>
+                  <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
+              <% } else { %>
+                  <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+              <% } %>
+            </div>
+        </nav>
 
-    </main>
-</body>
-
-
-<% include ./partials/footer %>
+    </body>
