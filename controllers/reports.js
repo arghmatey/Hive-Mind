@@ -3,24 +3,19 @@ const Reports = require('../models/report');
 
 module.exports = {
   index,
-  allBooks,
   create,
   delete: deleteOne
 };
 
 function index(req, res, next) {
-  Reports.find({}).sort('-createdAt').exec(function(err, reports) {
+  Reports.find({}).sort('-createdAt').populate('userReporting').exec(function(err, reports) {
+    console.log(reports)
     res.render('reports/index', {reports, user: req.user});
   })
 }
 
-function allBooks(req, res) {
-  Reports.find({}, function(err, reports) {
-    res.render('reports/all', reports)
-  })
-}
-
 function create(req, res) {
+  req.body.userReporting = req.user._id;
   const report = new Reports(req.body);
   report.save(function(err) {
     if (err) return res.redirect('/reports');

@@ -5,7 +5,11 @@ const userSchema = new Schema({
   name: String,
   email: String,
   avatar: String,
-  googleId: String
+  googleId: String,
+  reports: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Report'
+  }]
 }, {
   timestamps: true
 });

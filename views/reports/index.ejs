@@ -61,11 +61,13 @@
             <div class="poster-container">
                 <img class="poster" src="/images/defaultposter.png">
             </div>
+
+            <p class="reported-by"><%= r.userReporting.name %></p>
             <div class="text-and-options">
                 <div class="text-container">
-                    <h4><%= r.movie %></h4>
+                    <h4>Movie: <%= r.movie %></h4>
                     <p><%= r.content %></p>
-                    <div><%= r.rating %></div>
+                    <div>Rating: <%= r.rating %></div>
                 </div>
                 <div class="options-container">
                     <button class="collapsible" type="button">COMMENT</button>
@@ -74,22 +76,52 @@
                             <textarea name="userName" placeholder="who are you?"></textarea>
                             <input type="submit" value="Add Comment">
                         </form>
-                    <form>
-                        <button type="submit">EDIT</button>
-                    </form>
+
+                    <!-- only show delete and edit if user logged in is the same as userReporting -->
+
+                    <% if (user._id.toString() === r.userReporting._id.toString()) { %>
+                    
+                        <button class="collapsible" type="button">EDIT REPORT</button>
+                        <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>">
+                            <label>Title:
+                                <input type="text" name="movie" value="<%= r.movie %>">
+                            </label><br>
+                        <label>Report:
+                            <input type="text" name="content" value="<%= r.content %>">
+                            </label><br>
+                            <label>Rating:
+                            <select name="rating" value="<%= r.rating %>">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select></label>
+                        </form>
                     <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
                         <button type="submit">DELETE</button>
                     </form>
+                    <% } else { %>
+                      <% } %>
                 </div>
                 <div class="comments">
+                    
                     <% if (r.comments.length) { %>
-                          <tbody>
+                        <tbody>
+                        <tr>
                             <% r.comments.forEach(function(c) { %>
-                              <tr>
+                              
                                 <td><%= c.userName %> says...</td>
                                 <td><%= c.text %></td>
-                              </tr>
+                              
                             <% }); %>
+                        </tr>
+                            <tbody>
                       <% } else { %>
                         <h5>No comments yet...</h5>
                       <% } %>
