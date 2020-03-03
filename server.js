@@ -12,6 +12,7 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 
+var commentsRouter = require('./routes/comments');
 var indexRouter = require('./routes/index');
 var reportsRouter = require('./routes/reports');
 var usersRouter = require('./routes/users');
@@ -37,9 +38,10 @@ app.use(passport.session());
 
 app.use(methodOverride('_method'));
 
+app.use('/', commentsRouter);
 app.use('/', indexRouter);
 app.use('/reports', reportsRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -27,12 +27,12 @@
         <% if (user) { %>
         <div id="new-post">
             <h3>what are you watching now?</h3>
-                </label>
+            <form method="POST" action="/reports">
                 <label>Title:
-                    <input type="text" name="movie">
+                    <input type="text" name="movie" autocomplete="off">
                 </label><br>
-            <label>Comment:
-                <input type="text" name="content">
+            <label>Report:
+                <input type="text" name="content" autocomplete="off">
                 </label><br>
                 <label>Rating:
                 <select name="rating">
@@ -43,33 +43,63 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7" selected>7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                   </select></label>
-            <input type="submit" value="post!">
+            <input type="submit" value="send">
             </form></div>
             <% } else { %>
-                <div>you must log in to view.</div>
+                <div>you must log in to post.</div>
                 <% } %>
-    
-<div id="all-reports">
-    <div id="report-user-info">
+                
+    <div id="all-reports">
+
+        <!-- this is one single report -->
         <% reports.forEach(function(r) { %>
-    </div>
-    <div id="each-report">
-            <div id="poster-container"><img id="poster" src="/images/defaultposter.png"></div>
-            <div id="text-container">
-            <h4><%= r.movie %></h4>
-            <p><%= r.content %></p>
-            <div><%= r.rating %></div>
-            <div><%= r.userReporting %></div>
+        <div class="each-report">
+            <div class="poster-container">
+                <img class="poster" src="/images/defaultposter.png">
             </div>
-            <form action="/reports/<%= r._id %>?_method=DELETE"
-                id="delete-form" method="POST">
-                <button type="submit">X</button>
-                </form>
-            
-        <% }); %>
-        
-        </div>
+            <div class="text-and-options">
+                <div class="text-container">
+                    <h4><%= r.movie %></h4>
+                    <p><%= r.content %></p>
+                    <div><%= r.rating %></div>
+                </div>
+                <div class="options-container">
+                    <button class="collapsible" type="button">COMMENT</button>
+                        <form class="collapse" id="add-comment-form" method="POST" action="/reports/<%= r._id %>/comments">
+                            <textarea name="text" placeholder="say something..."></textarea>
+                            <textarea name="userName" placeholder="who are you?"></textarea>
+                            <input type="submit" value="Add Comment">
+                        </form>
+                    <form>
+                        <button type="submit">EDIT</button>
+                    </form>
+                    <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
+                        <button type="submit">DELETE</button>
+                    </form>
+                </div>
+                <div class="comments">
+                    <% if (r.comments.length) { %>
+                          <tbody>
+                            <% r.comments.forEach(function(c) { %>
+                              <tr>
+                                <td><%= c.userName %> says...</td>
+                                <td><%= c.text %></td>
+                              </tr>
+                            <% }); %>
+                      <% } else { %>
+                        <h5>No comments yet...</h5>
+                      <% } %>
+                </div>
+            </div>
+        </div>        
+            <% }); %>
+
+            <!-- this is where one single report ends -->
+    </div>
 </main>
 
 </body>

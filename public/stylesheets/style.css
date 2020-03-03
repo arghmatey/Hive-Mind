@@ -80,20 +80,29 @@ main {
 
 #new-post, #all-reports {
   margin: 15px;
-  padding: 10px;
   border: 1px solid var(--lightgreen);
 }
 
-#each-report {
+.each-report {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  margin: 15px;
+  justify-content: space-evenly;
+  border-bottom: 1px solid var(--paleblue);
 }
 
-#text-container {
-  outline: 1px solid salmon;
+.text-and-options {
+  width: 75%;
 }
 
-#poster {
+.poster {
   height: 100px;
 }
+
+.collapse {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
