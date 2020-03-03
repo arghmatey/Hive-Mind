@@ -1,0 +1,75 @@
+<% include ../partials/header %>
+
+
+<main>
+
+    <!-- LOADS USER INFORMATION ON SIDE PANEL -->
+    <div id="user">
+        <% if (user) { %>
+        <div id="user-card">
+            <% if (user.avatar) { %>
+                <img src="<%= user.avatar %>" class="user-avatar">
+              <% } else { %>
+                <div id="default-avatar"></div>
+              <% } %>
+        </div>
+        <div class="user-name"><%= user.name %></div>
+            <% } else { %>
+                <div id="user-card">
+                    this is where the user stuff will go
+                </div>
+                <% } %>
+        <a href="/reports/all">twilight zone</a>
+    </div>
+
+
+    <div id="feed">
+        <% if (user) { %>
+        <div id="new-post">
+            <h3>what are you watching now?</h3>
+                </label>
+                <label>Title:
+                    <input type="text" name="movie">
+                </label><br>
+            <label>Comment:
+                <input type="text" name="content">
+                </label><br>
+                <label>Rating:
+                <select name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7" selected>7</option>
+                  </select></label>
+            <input type="submit" value="post!">
+            </form></div>
+            <% } else { %>
+                <div>you must log in to view.</div>
+                <% } %>
+    
+<div id="all-reports">
+    <div id="report-user-info">
+        <% reports.forEach(function(r) { %>
+    </div>
+    <div id="each-report">
+            <div id="poster-container"><img id="poster" src="/images/defaultposter.png"></div>
+            <div id="text-container">
+            <h4><%= r.movie %></h4>
+            <p><%= r.content %></p>
+            <div><%= r.rating %></div>
+            <div><%= r.userReporting %></div>
+            </div>
+            <form action="/reports/<%= r._id %>?_method=DELETE"
+                id="delete-form" method="POST">
+                <button type="submit">X</button>
+                </form>
+            
+        <% }); %>
+        
+        </div>
+</main>
+
+</body>
