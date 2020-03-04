@@ -10,18 +10,20 @@ module.exports = {
 
 function index(req, res, next) {
   Report.find({}).sort('-createdAt').populate('userReporting').exec(function(err, report) {
-    console.log(report)
     res.render('reports/index', {report, user: req.user});
   })
 }
 
 function create(req, res) {
   req.body.userReporting = req.user._id;
-  const report = new Reports(req.body);
-  report.save(function(err) {
-    if (err) return res.redirect('/reports');
-    console.log(report);
-    res.redirect('/reports');
+  const report = new Report(req.body);
+  // Creates the new report, and saves it to both the user model and reports model
+  User.findById(req.user._id,function(error,currUser){
+    currUser.reports.push(report);
+    currUser.save();
+    report.save(function(err) {
+      res.redirect('/reports');
+    });
   });
 }
 

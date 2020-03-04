@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<main>
+
+    <!-- LOADS USER INFORMATION ON SIDE PANEL -->
+    <div id="user">
+        <% if (user) { %>
+        <div id="user-card">
+            <% if (user.avatar) { %>
+                <img src="<%= user.avatar %>" class="user-avatar">
+              <% } else { %>
+                <div id="default-avatar"></div>
+              <% } %>
+        </div>
+        <div class="user-name"><%= user.name %></div>
+            <% } else { %>
+                <div id="user-card">
+                    this is where the user stuff will go
+                </div>
+                <% } %>
+        <a href="/reports">twilight zone</a>
+    </div>
+
+    

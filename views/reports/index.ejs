@@ -19,7 +19,7 @@
                     this is where the user stuff will go
                 </div>
                 <% } %>
-        <a href="/reports/all">twilight zone</a>
+        <a href="/reports/all">my profile</a>
     </div>
 
 
@@ -58,11 +58,18 @@
         <!-- this is one single report -->
         <% report.forEach(function(r) { %>
         <div class="each-report">
+            <div class="user-reporting-info">
+                <% if (r.userReporting.avatar) { %>
+                    <img src="<%= r.userReporting.avatar %>" class="user-avatar">
+                  <% } else { %>
+                    <div id="default-avatar"></div>
+                  <% } %>
+            <div class="user-name"><%= r.userReporting.name %></div>
+            </div>
             <div class="poster-container">
                 <img class="poster" src="/images/defaultposter.png">
             </div>
 
-            <p class="reported-by"><%= r.userReporting.name %></p>
             <div class="text-and-options">
                 <div class="text-container">
                     <h4>Movie: <%= r.movie %></h4>
@@ -109,9 +116,10 @@
                     </form>
                     <% } else { %>
                       <% } %>
+                      <% } else { %>
+                        <% } %>
                 </div>
-                <% } else { %>
-                    <% } %>
+                
                 <div class="comments">
                     
                     <% if (r.comments.length) { %>
