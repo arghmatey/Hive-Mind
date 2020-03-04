@@ -56,7 +56,7 @@
     <div id="all-reports">
 
         <!-- this is one single report -->
-        <% reports.forEach(function(r) { %>
+        <% report.forEach(function(r) { %>
         <div class="each-report">
             <div class="poster-container">
                 <img class="poster" src="/images/defaultposter.png">
@@ -78,11 +78,11 @@
                         </form>
 
                     <!-- only show delete and edit if user logged in is the same as userReporting -->
-
+                    <% if (user) { %>
                     <% if (user._id.toString() === r.userReporting._id.toString()) { %>
                     
                         <button class="collapsible" type="button">EDIT REPORT</button>
-                        <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>">
+                        <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
                             <label>Title:
                                 <input type="text" name="movie" value="<%= r.movie %>">
                             </label><br>
@@ -102,6 +102,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                               </select></label>
+                              <input type="submit" value="Submit Edit">
                         </form>
                     <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
                         <button type="submit">DELETE</button>
@@ -109,6 +110,8 @@
                     <% } else { %>
                       <% } %>
                 </div>
+                <% } else { %>
+                    <% } %>
                 <div class="comments">
                     
                     <% if (r.comments.length) { %>

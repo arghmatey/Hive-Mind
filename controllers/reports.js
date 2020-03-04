@@ -1,16 +1,17 @@
-const Users = require('../models/user');
-const Reports = require('../models/report');
+const User = require('../models/user');
+const Report = require('../models/report');
 
 module.exports = {
   index,
   create,
-  delete: deleteOne
+  delete: deleteOne,
+  update
 };
 
 function index(req, res, next) {
-  Reports.find({}).sort('-createdAt').populate('userReporting').exec(function(err, reports) {
-    console.log(reports)
-    res.render('reports/index', {reports, user: req.user});
+  Report.find({}).sort('-createdAt').populate('userReporting').exec(function(err, report) {
+    console.log(report)
+    res.render('reports/index', {report, user: req.user});
   })
 }
 
@@ -25,7 +26,14 @@ function create(req, res) {
 }
 
 function deleteOne(req, res) {
-  Reports.findByIdAndRemove(req.params.id, function (err, report) {
+  Report.findByIdAndRemove(req.params.id, function (err, report) {
       res.redirect('/reports');
+  });
+}
+
+function update(req, res) {
+  Report.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, report){
+    console.log(report)
+    res.redirect('/reports');
   });
 }
