@@ -3,22 +3,119 @@
 <main>
 
     <!-- LOADS USER INFORMATION ON SIDE PANEL -->
+    <div id="user-page">
+
     <div id="user">
-        <% if (user) { %>
         <div id="user-card">
             <% if (user.avatar) { %>
                 <img src="<%= user.avatar %>" class="user-avatar">
               <% } else { %>
-                <div id="default-avatar"></div>
+                <div class="default-avatar"><i class="gg-bot"></i></div>
               <% } %>
         </div>
         <div class="user-name"><%= user.name %></div>
-            <% } else { %>
-                <div id="user-card">
-                    this is where the user stuff will go
-                </div>
-                <% } %>
+        
         <a href="/reports">twilight zone</a>
     </div>
 
-    
+    <div id="user-lists">
+        <div class="watching">
+        <% user.reports.forEach(function(r) { %>
+            
+
+              <div class="each-report">
+                
+                <!-- user info and time -->
+                <div class="user-reporting-info">
+                    <div class="pic-and-name">
+                        <% if (user.avatar) { %>
+                            <img src="<%= r.userReporting.avatar %>" class="user-avatar">
+                        <% } else { %>
+                            <div class="reporter-pic"><i class="gg-bot"></i></div>
+                        <% } %>
+                        <a href="/users/show" class="user-name"><%= user.name %></a>
+                    </div>
+                    <div class="time-created"><%= r.createdAt %></div>
+                </div>
+
+                <div class="user-input">
+                    <!-- poster img -->
+                        <img class="poster" src="/images/defaultposter.png">
+
+                    <!-- user report input -->
+                    <div class="text-container">
+                        <h4><%= r.movie %></h4>
+                        <p><%= r.content %></p>
+                        <div>Rating: <%= r.rating %>/10</div>
+                    </div>
+                </div>
+
+                <!-- option buttons -->
+                <div class="options-container">
+                    <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
+                        <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..." autocomplete="off" required>
+                        <input type="submit" value="Comment">
+                    </form>
+                </div>
+
+                <% if (user._id.toString() === r.userReporting._id.toString()) { %>       
+                    
+                    <!-- comment out edit button to fix style & implement easier editing 
+                        <button class="collapsible" type="button">EDIT</button>
+                    <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
+                        <label>Title:
+                            <input type="text" name="movie" value="<%= r.movie %>">
+                        </label><br>
+                        <label>Report:
+                            <input type="text" name="content" value="<%= r.content %>">
+                        </label><br>
+                        <label>Rating:
+                            <select name="rating" value="<%= r.rating %>">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="Submit Edit">
+                    </form> -->
+
+                <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
+                    <button type="submit">DELETE</button>
+                </form>
+                <% } else { %>
+                    <% } %>
+            
+                
+                    <div class="reports-comments">
+                        <% if (r.comments.length) { %>
+
+                                <% r.comments.forEach(function(c) { %>
+                                
+                                    <div class="each-comment">
+                                        <%= c.userName %> says... <%= c.text %>
+                                    </div>
+                                
+                                <% }); %>
+                            
+                        <% } else { %>
+                            <h5>No comments yet...</h5>
+                        <% } %>
+                    </div>
+                </div>
+                <% }); %>
+            
+        </div>     
+
+                <!-- this is where one single report ends -->
+        </div>
+        </div>
+    </div>
+
+        </div>

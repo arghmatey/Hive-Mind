@@ -1,7 +1,10 @@
 body {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Arial;
+  background-color: #f4f4f4;
+  color: #333333;
 }
 
 :root {
@@ -9,6 +12,22 @@ body {
   --orange: #F0CE6D;
   --paleblue:#E6F4F3;
   --purple: #2A202B;
+  --ggs: .5;
+}
+
+#landing-page {
+  background-color: #0c0c0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#welcome {
+  height: 200px;
+  width: 200px;
+  box-shadow: 3px 3px 4px 3px #000000,
+  -3px -3px 4px 3px var(--lightgreen);
 }
 
 h1, h2, h3, h4 {
@@ -39,20 +58,41 @@ main {
   padding: 50px;
 }
 
+button, input[type="submit"] {
+  background-color: #f4f4f4;
+  color: #666666;
+  cursor: pointer;
+  border: none;
+  border-radius: 280px;
+  box-shadow: 1px 1px 2px 1px #d3d3d3,
+  -1px -1px 2px 1px #ffffff;
+}
+
+button:focus, input[type="submit"]:focus {
+  outline: 0;
+  box-shadow: inset 1px 1px 2px 1px #d3d3d3,
+  inset -1px -1px 2px 1px #ffffff;
+}
+
+button:active {
+  box-shadow: inset 1px 1px 2px 1px #d3d3d3,
+  inset -1px -1px 2px 1px #ffffff;
+}
+
 #user {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20vw;
+  width: 200px;
   height: 150px;
+}
+
+#user, .each-report{
+  margin: 20px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
   box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
-}
-
-#user, #feed {
-  margin: 20px;
 }
 
 #user > * {
@@ -65,38 +105,85 @@ main {
 }
 
 .default-avatar {
-  background-color: var(--purple);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px  solid lightgray;
   height: 50px;
+  width: 50px;
   border-radius: 50%;
 }
 
-#feed {
-  width: 70vw;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
-  box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
+.default-avatar i {
+  transform: scale(1, 1);
 }
 
-#new-post, #all-reports {
+#feed, #user-lists {
+  width: 750px;
+}
+
+#new-post, #all-reports, .watching {
   margin: 15px;
   border: 1px solid var(--lightgreen);
 }
 
 .each-report {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 15px;
-  justify-content: space-evenly;
   border-bottom: 1px solid var(--paleblue);
+  padding: 10px;
 }
 
-.text-and-options {
-  width: 75%;
+.user-reporting-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.each-report > * {
+  margin: 5px 5px;
+}
+
+.pic-and-name {
+  display: flex;
+  align-items: center;
+}
+
+.user-reporting-info img{
+  height: 25px;
+  margin: 5px;
+}
+
+.reporter-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px  solid lightgray;
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  border-radius: 50%;
+}
+
+.reporter-pic i {
+  transform: scale(.5, .5);
+}
+
+.user-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.text-container {
+  margin: 5px;
+
 }
 
 .poster {
   height: 100px;
+  margin-right: 5px;
 }
 
 .collapse {
@@ -106,3 +193,26 @@ main {
   background-color: #f1f1f1;
 }
 
+#user-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 5px 0;
+}
+
+.new-comment {
+  width: 55%;
+}
+
+#comment-input {
+  padding: 7px;
+  width: 75%;
+}
