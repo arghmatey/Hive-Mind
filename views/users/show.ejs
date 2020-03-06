@@ -23,20 +23,20 @@
         <% user.reports.forEach(function(r) { %>
             
 
-              <div class="each-report">
-                
-                <!-- user info and time -->
-                <div class="user-reporting-info">
-                    <div class="pic-and-name">
-                        <% if (user.avatar) { %>
-                            <img src="<%= r.userReporting.avatar %>" class="user-avatar">
-                        <% } else { %>
-                            <div class="reporter-pic"><i class="gg-bot"></i></div>
-                        <% } %>
-                        <a href="/users/show" class="user-name"><%= user.name %></a>
-                    </div>
-                    <div class="time-created"><%= r.createdAt %></div>
+            <div class="each-report">
+            
+            <!-- user info and time -->
+            <div class="user-reporting-info">
+                <div class="pic-and-name">
+                    <% if (user.avatar) { %>
+                        <img src="<%= r.userReporting.avatar %>" class="user-avatar">
+                    <% } else { %>
+                        <div class="reporter-pic"><i class="gg-bot"></i></div>
+                    <% } %>
+                    <a href="/users/show" class="user-name"><%= user.name %></a>
                 </div>
+                <div class="time-created"><%= r.createdAt %></div>
+            </div>
 
                 <div class="user-input">
                     <!-- poster img -->
@@ -56,61 +56,46 @@
                         <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..." autocomplete="off" required>
                         <input type="submit" value="Comment">
                     </form>
-                </div>
+                
 
                 <% if (user._id.toString() === r.userReporting._id.toString()) { %>       
                     
-                    <!-- comment out edit button to fix style & implement easier editing 
-                        <button class="collapsible" type="button">EDIT</button>
-                    <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
-                        <label>Title:
-                            <input type="text" name="movie" value="<%= r.movie %>">
-                        </label><br>
-                        <label>Report:
-                            <input type="text" name="content" value="<%= r.content %>">
-                        </label><br>
-                        <label>Rating:
-                            <select name="rating" value="<%= r.rating %>">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </label>
-                        <input type="submit" value="Submit Edit">
-                    </form> -->
-
-                <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
-                    <button type="submit">DELETE</button>
-                </form>
-                <% } else { %>
-                    <% } %>
-            
-                
-                    <div class="reports-comments">
-                        <% if (r.comments.length) { %>
-
-                                <% r.comments.forEach(function(c) { %>
-                                
-                                    <div class="each-comment">
-                                        <%= c.userName %> says... <%= c.text %>
-                                    </div>
-                                
-                                <% }); %>
-                            
-                        <% } else { %>
-                            <h5>No comments yet...</h5>
+                    
+                    <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
+                        <button type="submit" class="delete">DELETE</button>
+                    </form>
+                    <% } else { %>
                         <% } %>
+                        
                     </div>
-                </div>
-                <% }); %>
-            
+                    
+                        <div class="reports-comments">
+                            <a href="javascript:void(0);" id="comment-count" class="collapsible"><%= r.comments.length %> Comments</a>
+                            <div class="content">
+                            <% if (r.comments.length) { %>
+    
+                                    <% r.comments.forEach(function(c) { %>
+                                    
+                                        <div class="each-comment">
+                                            <%= c.userName %>: <%= c.text %>
+                            
+                                        <% if (user) { %>
+                                            <% if (user._id.toString() === c.userId.toString()) { %> 
+                                                <button class="each-comment-button"><i class="gg-pen"></i></button>
+                                                <form action ="/<%= r._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
+                                                    <button class="each-comment-button" type="submit"><i class="gg-trash"></i></button>
+                                                </form>
+                                                <% } else { %>
+                                                    <% } }%>
+                                                </div>
+                                    <% }); %>
+                                
+                            <% } else { %>
+                            <% }; %>
+                            <% }) %>
+                        </div>
+                    </div>
+                    </div>
         </div>     
 
                 <!-- this is where one single report ends -->
