@@ -2,7 +2,6 @@
 
 <main>
 
-    <!-- LOADS USER INFORMATION ON SIDE PANEL -->
     <div id="user-page">
 
         <div id="user-profile">
@@ -15,7 +14,7 @@
             </div>
             <div class="user-name"><%= user.name %></div>
 
-            <a href="/reports">twilight zone</a>
+            <a href="/reports">go back home</a>
         </div>
 
         <div id="user-lists">
@@ -25,7 +24,6 @@
 
                 <div class="each-report">
 
-                    <!-- user info and time -->
                     <div class="user-reporting-info">
                         <div class="pic-and-name">
                             <% if (user.avatar) { %>
@@ -39,10 +37,8 @@
                     </div>
 
                     <div class="user-input">
-                        <!-- poster img -->
                         <img class="poster" src="/images/defaultposter.png">
 
-                        <!-- user report input -->
                         <div class="text-container">
                             <h4><%= r.movie %></h4>
                             <p><%= r.content %></p>
@@ -50,7 +46,6 @@
                         </div>
                     </div>
 
-                    <!-- option buttons -->
                     <div class="options-container">
                         <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
                             <input id="comment-input" type="text" name="text"
@@ -129,7 +124,6 @@
 
                 </div>
 
-                <!-- this is where one single report ends -->
             </div>
         </div>
     </div>

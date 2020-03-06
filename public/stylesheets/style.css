@@ -52,6 +52,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: #333333;
+}
+
 nav {
   display: flex;
   flex-direction: row;
@@ -190,6 +194,10 @@ button:active {
   margin: 5px 5px;
 }
 
+#report-movie {
+  font-size: 16px;
+}
+
 .pic-and-name {
   display: flex;
   align-items: center;
@@ -267,13 +275,20 @@ button:active {
 }
 
 
-
 #name-container a, #name-container p {
   margin: 0;
 }
 
+nav .user-name {
+  color: var(--paleblue);
+}
+
 .user-name, h3, #comment-count {
   font-family: 'Jura', sans-serif;
+}
+
+#comment-count {
+  color: var(--purple);
 }
 
 #name-container p {

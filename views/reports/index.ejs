@@ -5,7 +5,6 @@
 
     <div id="feed">
 
-        <!-- if logged in, prompt user for a new report -->
         <% if (user) { %>
         <div id="new-post">
             <h3>what are you watching now?</h3>
@@ -38,11 +37,9 @@
 
         <div id="all-reports">
 
-            <!-- this is one single report -->
             <% report.forEach(function(r) { %>
             <div class="each-report">
 
-                <!-- user info and time -->
                 <div class="user-reporting-info">
                     <div class="pic-and-name">
                         <% if (r.userReporting.avatar) { %>
@@ -59,10 +56,8 @@
                 </div>
 
                 <div class="user-input">
-                    <!-- poster img -->
                     <img class="poster" src="/images/defaultposter.png">
 
-                    <!-- user report input -->
                     <div class="text-container">
                         <h4 id="report-movie"><%= r.movie %></h4>
                         <p id="report-content"><%= r.content %></p>
@@ -70,7 +65,6 @@
                     </div>
                 </div>
 
-                <!-- option buttons -->
                 <div class="options-container">
                     <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
                         <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..."
@@ -78,7 +72,6 @@
                         <input type="submit" value="Comment">
                     </form>
 
-                    <!-- userReporting only option buttons -->
                     <% if (user) { %>
                     <% if (user._id.toString() === r.userReporting._id.toString()) { %>
 
@@ -154,7 +147,6 @@
 
         </div>
 
-        <!-- this is where one single report ends -->
     </div>
 </main>
 
