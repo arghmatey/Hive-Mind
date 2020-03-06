@@ -11,24 +11,24 @@ const commentSchema = new Schema({
 })
 
 const reportSchema = new Schema({
-    userReporting: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    movie: String,
-    content: String,
-    rating: {
-      type: Number, 
-      min: 1, 
-      max: 10
-    },
-    usersWatching: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    comments: [commentSchema]
-  }, {
-    timestamps: true
-  });
+  userReporting: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  movie: String,
+  content: String,
+  rating: {
+    type: Number,
+    min: 1,
+    max: 10
+  },
+  usersWatching: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  comments: [commentSchema]
+}, {
+  timestamps: true
+});
 
 module.exports = mongoose.model('Report', reportSchema);

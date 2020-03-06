@@ -105,13 +105,11 @@ button:active {
 
 #user {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 200px;
-  height: 150px;
-}
+} 
 
-#user, .each-report{
+.each-report, #new-post {
   margin: 20px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
@@ -124,6 +122,11 @@ button:active {
 }
 
 .user-avatar {
+  height: 25px;
+  border-radius: 50%;
+}
+
+#profile-avatar {
   height: 50px;
   border-radius: 50%;
 }
@@ -144,10 +147,28 @@ button:active {
 
 #feed, #user-lists {
   width: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#new-post, #all-reports, .watching {
+#all-reports, .watching {
   margin: 15px;
+}
+
+#new-post {
+  width: 400px;
+  justify-self: center;
+  padding: 20px;
+  align-self: center;
+  text-align: center;
+}
+
+#new-post input[type="text"] {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 7px;
+  width: 70%;
 }
 
 .each-report {
@@ -214,18 +235,19 @@ button:active {
 .options-container {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
   padding: 5px 0;
 }
 
 .new-comment {
-  width: 55%;
+  width: 75%;
 }
 
 #comment-input {
+  border-radius: 5px;
   padding: 7px;
-  width: 75%;
+  width: 70%;
 }
 
 .each-comment {
@@ -244,12 +266,7 @@ button:active {
   color: maroon;
 }
 
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
+
 
 #name-container a, #name-container p {
   margin: 0;
@@ -268,7 +285,38 @@ button:active {
   flex-direction: row;
 }
 
-#user-only-buttons > * {
+button {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+textarea {
+  height: 50px;
+}
+
+#user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 150px;
+}
+
+#user-profile{
+  margin: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(42,32,43,0.75);
+}
+
+#user-profile > * {
+  padding: 10px;
 }

@@ -3,26 +3,6 @@
 
 <main>
 
-    <!-- LOADS USER INFORMATION ON SIDE PANEL -->
-    <div id="user">
-        <% if (user) { %>
-        <div id="user-card">
-            <% if (user.avatar) { %>
-            <img src="<%= user.avatar %>" class="user-avatar">
-            <% } else { %>
-            <div class="default-avatar"><i class="gg-bot"></i></div>
-            <% } %>
-        </div>
-        <div class="user-name"><%= user.name %></div>
-        <% } else { %>
-        <div id="user-card">
-            this is where the user stuff will go
-        </div>
-        <% } %>
-        <a href="/users/show">my profile</a>
-    </div>
-
-
     <div id="feed">
 
         <!-- if logged in, prompt user for a new report -->
@@ -49,7 +29,7 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select></label>
-                <input type="submit" value="send">
+                <input type="submit" value="send report">
             </form>
         </div>
         <% } else { %>
@@ -103,37 +83,39 @@
                     <% if (user._id.toString() === r.userReporting._id.toString()) { %>
 
                     <div id="user-only-buttons">
-                        <button type="button" class="report-edit-button">EDIT</button>
-
-                        <!-- comment out edit button to fix style & implement easier editing 
-                        <button class="collapsible" type="button">EDIT</button>
-                    <form class="collapse" id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
-                        <label>Title:
-                            <input type="text" name="movie" value="<%= r.movie %>">
-                        </label><br>
-                        <label>Report:
-                            <input type="text" name="content" value="<%= r.content %>">
-                        </label><br>
-                        <label>Rating:
-                            <select name="rating" value="<%= r.rating %>">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </label>
-                        <input type="submit" value="Submit Edit">
-                    </form> -->
-
-                        <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
-                            <button type="submit" class="delete">DELETE</button>
-                        </form>
+                        <span class=edit-button><button type="button" class="collapsible"
+                                class="report-edit-button">EDIT</button>
+                            <div class="content">
+                                <form id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
+                                    <label>Title:
+                                        <input type="text" name="movie" value="<%= r.movie %>">
+                                    </label><br>
+                                    <label>Report:
+                                        <textarea name="content"><%= r.content %></textarea>
+                                    </label><br>
+                                    <label>Rating:
+                                        <select name="rating" value="<%= r.rating %>">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </label>
+                                    <input type="submit" value="Submit Edit">
+                                </form>
+                            </div>
+                        </span>
+                        <span id="delete-report">
+                            <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
+                                <button type="submit" class="delete">DELETE</button>
+                            </form>
+                        </span>
                     </div>
                     <% } else { %>
                     <% } %>
@@ -142,7 +124,7 @@
                 </div>
 
                 <div class="reports-comments">
-                    <a href="javascript:void(0);" ¸ id="comment-count" class="collapsible"><%= r.comments.length %>
+                    <a href="javascript:void(0);" id="comment-count" class="collapsible"><%= r.comments.length %>
                         Comments</a>
                     <div class="content">
                         <% if (r.comments.length) { %>

@@ -5,10 +5,9 @@ module.exports = {
   show
 };
 
-
 function show(req, res) {
-  User.findById(req.user._id).populate('reports').exec(function(err, user){
+  User.findById(req.user._id).populate('reports').exec(function (err, user) {
     if (err) return res.redirect('./');
-    res.render('users/show', {user})
+    res.render('users/show', { user })
   })
 }
