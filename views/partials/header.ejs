@@ -2,39 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link
-        href="https://css.gg/c?=|bot|erase|film|games|heart|pen|smartphone-chip|smartphone-ram|smile-neutral|smile-sad|smile|terminal|trash"
-        rel="stylesheet">
-    <script defer src="/javascripts/main.js"></script>
-    <title>Hive Mind</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link
+    href="https://css.gg/c?=|bot|erase|film|games|heart|pen|smartphone-chip|smartphone-ram|smile-neutral|smile-sad|smile|terminal|trash"
+    rel="stylesheet" />
+  <script defer src="/javascripts/main.js"></script>
+  <title>Hive Mind</title>
 </head>
 
 <body>
+  <nav>
+    <div id="logo">
+      <p class="brand-logo left">Hive Mind</p>
+    </div>
 
-    <nav>
-        <div id="logo">
-            <p class="brand-logo left">Hive Mind</p>
-        </div>
+    <div id="login-links">
+      <% if (user) { %>
+      <div id="user">
+        <% if (user.avatar) { %>
+        <img src="<%= user.avatar %>" class="user-avatar" />
+        <% } else { %>
+        <div class="default-avatar"><i class="gg-bot"></i></div>
+        <% } %>
+        <a href="/users/<%= user._id %>" class="user-name"><%= user.name %></a>
 
+        <a href="/logout">Log Out</a>
+      </div>
+      <% } else { %>
+      <a href="/auth/google">Login with Google</a>
+      <% } %>
+    </div>
+  </nav>
+</body>
 
-
-        <div id="login-links">
-            <% if (user) { %>
-            <div id="user">
-                <% if (user.avatar) { %>
-                <img src="<%= user.avatar %>" class="user-avatar">
-                <% } else { %>
-                <div class="default-avatar"><i class="gg-bot"></i></div>
-                <% } %>
-                <a href="/users/show" class="user-name"><%= user.name %></a>
-
-                <a href="/logout">Log Out</a>
-            </div>
-            <% } else { %>
-            <a href="/auth/google">Login with Google</a>
-            <% } %>
-        </div>
-    </nav>
+</html>

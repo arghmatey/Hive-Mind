@@ -48,11 +48,13 @@
                         <div class="reporter-pic"><i class="gg-bot"></i></div>
                         <% } %>
                         <div id="name-container">
-                            <a href="/users/show" class="user-name"><%= r.userReporting.name %></a>
+                            <a href="/users/<%= r.userReporting._id %>"
+                                class="user-name"><%= r.userReporting.name %></a>
                             <p>is watching...</p>
                         </div>
                     </div>
                     <div class="time-created"><%= r.createdAt %></div>
+                    <!-- change date and time format -->
                 </div>
 
                 <div class="user-input">

@@ -6,8 +6,8 @@ module.exports = {
 };
 
 function show(req, res) {
-  User.findById(req.user._id).populate('reports').exec(function (err, user) {
-    if (err) return res.redirect('./');
-    res.render('users/show', { user })
+  User.findById(req.params.id).populate('reports').exec(function (err, showUser) {
+    if (err) return res.redirect('/');
+    res.render('users/show', { showUser, user: req.user })
   })
 }

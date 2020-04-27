@@ -6,32 +6,33 @@
 
         <div id="user-profile">
             <div id="user-card">
-                <% if (user.avatar) { %>
-                <img src="<%= user.avatar %>" id="profile-avatar">
+                <% if (showUser.avatar) { %>
+                <img src="<%= showUser.avatar %>" id="profile-avatar">
                 <% } else { %>
                 <div class="default-avatar"><i class="gg-bot"></i></div>
                 <% } %>
             </div>
-            <div class="user-name"><%= user.name %></div>
+            <div class="user-name"><%= showUser.name %></div>
 
             <a href="/reports">go back home</a>
         </div>
 
         <div id="user-lists">
             <div class="watching">
-                <% user.reports.forEach(function(r) { %>
+
+                <% showUser.reports.forEach(function(r) { %>
 
 
                 <div class="each-report">
 
                     <div class="user-reporting-info">
                         <div class="pic-and-name">
-                            <% if (user.avatar) { %>
+                            <% if (showUser.avatar) { %>
                             <img src="<%= r.userReporting.avatar %>" class="user-avatar">
                             <% } else { %>
                             <div class="reporter-pic"><i class="gg-bot"></i></div>
                             <% } %>
-                            <a href="/users/show" class="user-name"><%= user.name %></a>
+                            <a href="/users/show" class="user-name"><%= showUser.name %></a>
                         </div>
                         <div class="time-created"><%= r.createdAt %></div>
                     </div>
