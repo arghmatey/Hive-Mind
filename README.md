@@ -6,12 +6,6 @@ HiveMind is a community forum that allows SciFi fans to share what share what mo
 
 ![Home Screen](public/images/home-page.png)
 
-![New Post](public/images/new-post.png)
-
-![Comment Section](public/images/comment-section.png)
-
-![User Profile](public/images/user-profile.png)
-
 ---
 
 #### Technologies Used:
