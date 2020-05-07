@@ -48,7 +48,9 @@
                             <p>is watching...</p>
                         </div>
                     </div>
-                    <div class="time-created"><%= r.createdAt %></div>
+                    <div class="time-created"><%= r.createdAt.toDateString() %>
+                        <%= r.createdAt.toLocaleTimeString('en-US') %>
+                    </div>
                     <!-- change date and time format -->
                 </div>
 

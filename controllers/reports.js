@@ -26,6 +26,7 @@ function create(req, res) {
       res.redirect('/reports');
     });
   });
+  console.log(req.body.createdAt)
 }
 
 function deleteOne(req, res) {
