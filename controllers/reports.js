@@ -18,7 +18,6 @@ function index(req, res, next) {
 function create(req, res) {
   req.body.userReporting = req.user._id;
   const report = new Report(req.body);
-  // Creates the new report, and saves it to both the user model and reports model
   User.findById(req.user._id, function (err, currUser) {
     if (err) return res.redirect('./');
     currUser.reports.push(report);
