@@ -28,75 +28,27 @@
         <div id="all-reports">
             <% report.forEach(function(r) { %>
             <div class="each-report">
-                <div class="user-reporting-info">
-                    <div class="pic-and-name">
-
-                        <% if (r.userReporting.avatar) { %>
-                        <img src="<%= r.userReporting.avatar %>" class="user-avatar">
-                        <% } else { %>
-                        <div class="reporter-pic"><i class="gg-bot"></i></div>
-                        <% } %>
-                        <div id="name-container">
+                <div id="testing">
+                    <img class="poster" src="/images/defaultposter.png">
+                    <div id="user-input">
+                        <h4 id="report-movie"><%= r.movie %></h4>
+                        <div id="user-info">
                             <a href="/users/<%= r.userReporting._id %>"
                                 class="user-name"><%= r.userReporting.name %></a>
-                            <p>is watching...</p>
+                            <span>
+                                <%= r.createdAt.toLocaleDateString() %>
+                                <%= r.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %></span>
                         </div>
-                    </div>
-                    <div class="time-created"><%= r.createdAt.toDateString() %>
-                        <%= r.createdAt.toLocaleTimeString('en-US') %>
+                        <div><%= r.rating %>/5 - <%= r.content %></div>
                     </div>
                 </div>
-                <div class="user-input">
-                    <img class="poster" src="/images/defaultposter.png">
-                    <div class="text-container">
-                        <h4 id="report-movie"><%= r.movie %></h4>
-                        <p id="report-content"><%= r.content %></p>
-                        <div id="report-rating">Rating: <%= r.rating %>/5</div>
-                    </div>
-                </div>
+
                 <div class="options-container">
                     <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
                         <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..."
                             autocomplete="off" required>
                         <input type="submit" value="Comment">
                     </form>
-
-                    <% if (user) { %>
-                    <% if (user._id.toString() === r.userReporting._id.toString()) { %>
-                    <div id="user-only-buttons">
-                        <span class=edit-button><button type="button" class="collapsible"
-                                class="report-edit-button">EDIT</button>
-                            <div class="content">
-                                <form id="edit-report-form" method="POST" action="/reports/<%= r._id %>?_method=PUT">
-                                    <label>Title:
-                                        <input type="text" name="movie" value="<%= r.movie %>">
-                                    </label><br>
-                                    <label>Report:
-                                        <textarea name="content"><%= r.content %></textarea>
-                                    </label><br>
-                                    <label>Rating:
-                                        <select name="rating" value="<%= r.rating %>">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </label>
-                                    <input type="submit" value="Submit Edit">
-                                </form>
-                            </div>
-                        </span>
-                        <span id="delete-report">
-                            <form action="/reports/<%= r._id %>?_method=DELETE" class="delete-form" method="POST">
-                                <button type="submit" class="delete">DELETE</button>
-                            </form>
-                        </span>
-                    </div>
-                    <% } else { %>
-                    <% } %>
-                    <% } else { %>
-                    <% } %>
                 </div>
 
                 <div class="reports-comments">
@@ -127,3 +79,5 @@
     </div>
 </main>
 </body>
+
+</html>

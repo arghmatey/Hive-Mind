@@ -14,20 +14,13 @@
 
 <body>
   <nav>
-    <div id="logo">
-      <p class="brand-logo left">Hive Mind</p>
-    </div>
+    <h1 class="brand-logo left">Hive Mind</h1>
 
     <div id="login-links">
       <% if (user) { %>
       <div id="user">
-        <% if (user.avatar) { %>
-        <img src="<%= user.avatar %>" class="user-avatar" />
-        <% } else { %>
-        <div class="default-avatar"><i class="gg-bot"></i></div>
-        <% } %>
         <a href="/users/<%= user._id %>" class="user-name"><%= user.name %></a>
-
+        <span>|</span>
         <a href="/logout">Log Out</a>
       </div>
       <% } else { %>
@@ -35,6 +28,3 @@
       <% } %>
     </div>
   </nav>
-</body>
-
-</html>
