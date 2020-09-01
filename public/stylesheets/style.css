@@ -112,10 +112,22 @@ nav .user-name {
 }
 
 #new-post input[type="text"] {
+  font: 12px 'Open Sans';
   margin: 5px;
   border-radius: 5px;
   padding: 5px;
   width: 70%;
+}
+
+input[type="submit"] {
+  background-color: #f4f4f4;
+  color: #666666;
+  cursor: pointer;
+  height: 20px;
+  border: none;
+  border-radius: 13px;
+  box-shadow: 1px 1px 2px 1px #999999, -1px -1px 2px 1px #999999;
+  margin-left: 20px;
 }
 
 #user-report {
@@ -173,12 +185,15 @@ h4, p {
 }
 
 .new-comment {
+  height: 30px;
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 #comment-input {
+  font: 12px 'Open Sans';
   border-radius: 5px;
   padding: 7px;
   width: 75%;
