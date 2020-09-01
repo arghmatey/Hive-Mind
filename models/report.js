@@ -8,7 +8,9 @@ const commentSchema = new Schema({
     ref: 'User'
   },
   userName: String
-})
+}, {
+  timestamps: true
+});
 
 const reportSchema = new Schema({
   userReporting: {
