@@ -2,7 +2,7 @@
 <main>
     <% if (user) { %>
     <div id="new-post">
-        <h3>what are you watching now?</h3>
+        <h2>what are you watching now?</h2>
         <form method="POST" action="/reports">
             <label>Title:
                 <input type="text" name="movie" autocomplete="off" required>
@@ -29,7 +29,6 @@
         <div id="testing">
             <img class="poster" src="/images/defaultposter.png">
             <div id="user-input">
-                <h4 id="report-movie"><%= r.movie %></h4>
                 <div id="user-info">
                     <div>
                         <img src="<%= r.userReporting.avatar %>" class="user-avatar">
@@ -40,6 +39,7 @@
                         <%= r.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
                     </p>
                 </div>
+                <h3 id="report-movie"><%= r.movie %></h3>
                 <p><%= r.rating %>/5 - <%= r.content %></p>
             </div>
         </div>

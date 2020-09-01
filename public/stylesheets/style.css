@@ -61,7 +61,7 @@ main {
   padding: 50px;
 }
 
-.user-name, h3, h4, #comment-count {
+.user-name, h2, h3, #comment-count {
   font-family: 'Jura', sans-serif;
   margin-top: 0;
 }
@@ -177,6 +177,7 @@ h4, p {
 
 @media only screen and (max-device-width: 812px) {
   main {
+    font-size: calc(.50em + 1vw);
     padding: 20px;
   }
   nav {
