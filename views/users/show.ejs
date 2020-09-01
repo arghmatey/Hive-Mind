@@ -12,51 +12,48 @@
     </div>
 
     <% showUser.reports.forEach(function(r) { %>
-
     <div class="each-report">
-        <div id="testing">
+        <div id="user-report">
             <img class="poster" src="/images/defaultposter.png">
             <div id="user-input">
-                <h4 id="report-movie"><%= r.movie %></h4>
                 <div id="user-info">
                     <div>
-                        <a href="/users/<%= r.userReporting._id %>" class="user-name"><img src="<%= showUser.avatar %>"
-                                class="user-avatar"><%= showUser.name %></a>
+                        <img src="<%= showUser.avatar %>" class="user-avatar">
+                        <a href="/users/<%= r.userReporting._id %>" class="user-name"><%= showUser.name %></a>
                     </div>
                     <p>
                         <%= r.createdAt.toLocaleDateString() %>
                         <%= r.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
                     </p>
                 </div>
-                <div><%= r.rating %>/5 - <%= r.content %></div>
+                <h3 id="report-movie"><%= r.movie %></h3>
+                <p><%= r.rating %>/5 - <%= r.content %></p>
             </div>
         </div>
-
 
         <div class="options-container">
             <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
                 <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..."
                     autocomplete="off" required>
-                <input type="submit" value="Comment">
+                <input type="submit" value="Post">
             </form>
         </div>
 
         <div class="reports-comments">
-            <a href="javascript:void(0);" id="comment-count" class="collapsible"><%= r.comments.length %>
+            <a href="javascript:void(0);" id="comment-count" class="collapsible">‣ <%= r.comments.length %>
                 Comments</a>
             <div class="content">
                 <% if (r.comments.length) { %>
                 <% r.comments.forEach(function(c) { %>
                 <div class="each-comment">
-                    <%= c.userName %>: <%= c.text %>
-                    <% if (user) { %>
-                    <% if (user._id.toString() === c.userId.toString()) { %>
-                    <button class="each-comment-button"><i class="gg-pen"></i></button>
-                    <form action="/<%= r._id %>/comments/<%= c._id %>?_method=DELETE" method="POST">
-                        <button class="each-comment-button" type="submit"><i class="gg-trash"></i></button>
-                    </form>
-                    <% } else { %>
-                    <% } }%>
+                    <div id="user-info">
+                        <a href="/users/<%= c.userName._id %>" class="user-name"><%= c.userName %></a>
+                        <p>
+                            <%= c.createdAt.toLocaleDateString() %>
+                            <%= c.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
+                        </p>
+                    </div>
+                    <p><%= c.text %></p>
                 </div>
                 <% }); %>
                 <% } else { %>

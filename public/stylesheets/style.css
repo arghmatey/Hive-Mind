@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans&family=Jura:wght@700&display=swap');
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -117,7 +118,7 @@ nav .user-name {
   width: 70%;
 }
 
-#testing {
+#user-report {
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
@@ -125,7 +126,7 @@ nav .user-name {
 
 .poster {
   height: 100px;
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 h4, p {
@@ -147,7 +148,7 @@ h4, p {
 }
 
 #user-info>* {
-  font: calc(.50em + 1vw) Arial;
+  font-size: calc(.50em + 1vw);
   display: flex;
   align-items: center;
 }
@@ -167,12 +168,24 @@ h4, p {
   overflow: hidden;
 }
 
+.content>div:nth-of-type(odd) {
+  background: #e0e0e0;
+}
+
+.new-comment {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#comment-input {
+  border-radius: 5px;
+  padding: 7px;
+  width: 75%;
+}
+
 .each-comment {
-  font: calc(.60em + 1vw) Arial;
   padding: 3px;
-  background-color: #f1f1f1;
-  border-bottom: 1px solid grey;
-  margin-bottom: 3px;
 }
 
 @media only screen and (max-device-width: 812px) {
@@ -194,5 +207,9 @@ h4, p {
   }
   #user-profile {
     margin: 15px;
+  }
+  .poster {
+    height: 100px;
+    margin-right: 7px;
   }
 }

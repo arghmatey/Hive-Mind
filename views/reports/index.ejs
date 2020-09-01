@@ -18,7 +18,7 @@
                     <option value="4">4</option>
                     <option value="5" selected>5</option>
                 </select></label>
-            <input type="submit" value="send report">
+            <input type="submit" value="Report">
         </form>
     </div>
     <% } else { %>
@@ -26,7 +26,7 @@
     <% } %>
     <% report.forEach(function(r) { %>
     <div class="each-report">
-        <div id="testing">
+        <div id="user-report">
             <img class="poster" src="/images/defaultposter.png">
             <div id="user-input">
                 <div id="user-info">
@@ -48,7 +48,7 @@
             <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
                 <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..."
                     autocomplete="off" required>
-                <input type="submit" value="Comment">
+                <input type="submit" value="Send">
             </form>
         </div>
 
@@ -59,8 +59,14 @@
                 <% if (r.comments.length) { %>
                 <% r.comments.forEach(function(c) { %>
                 <div class="each-comment">
-                    <a href="/users/<%= c.userName._id %>" class="user-name"><%= c.userName %></a>
-                    <%= c.text %>
+                    <div id="user-info">
+                        <a href="/users/<%= c.userName._id %>" class="user-name"><%= c.userName %></a>
+                        <p>
+                            <%= c.createdAt.toLocaleDateString() %>
+                            <%= c.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
+                        </p>
+                    </div>
+                    <p><%= c.text %></p>
                 </div>
                 <% }); %>
                 <% } else { %>
