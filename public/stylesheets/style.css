@@ -23,6 +23,7 @@ body {
 #landing-page {
   background-color: #0c0c0c;
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 100vh;
 }
