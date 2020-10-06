@@ -37,7 +37,7 @@ body {
   background-color: black;
   color: var(--lightgreen);
   text-align: center;
-  box-shadow: 3px 3px 4px 3px var(--lightgreen), -3px -3px 4px 3px var(--lightgreen);
+  box-shadow: 3px 3px 4px 3px var(--lightgreen), -3px -3px 4px 3px var(--lightgreen), -3px 3px 4px 3px var(--lightgreen), 3px -3px 4px 3px var(--lightgreen);
 }
 
 h1 {

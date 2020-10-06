@@ -2,10 +2,11 @@
 <main>
     <div class="movie-search">
         <h2>search for a movie</h2>
-        <form action="/movie">
-            <input type="text" placeholder="Movie title here..." name="search">
-            <button type="submit">VIEW ALL MOVIES</button>
+        <form action="/movies">
+            <input type="text" placeholder="Movie title here..." name="search" required>
+            <button type="submit">search movies</button>
         </form>
+
     </div>
 
     <% if (user) { %>
