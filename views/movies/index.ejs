@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+<main>
+    <div class="movie-search">
+        <h2>search for a movie</h2>
+        <form method="GET" action="/movies">
+            <input type="text" placeholder="Movie title here..." name="search" required>
+            <input type="submit" value="Search">
+        </form>
+
+    </div>
+
+    <% allResults.forEach(function(movie) { %>
+    <div class="each-movie">
+        <div id="movie-info">
+            <% if(movie.poster_path) { %>
+            <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
+            <% } else { %>
+            <img class="poster" src="/images/defaultposter.png">
+            <% } %>
+            <div id="title-desc">
+                <h3 id="movie-title"><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h3>
+                <p><%= movie.release_date %></p>
+                <p id="movie-desc"><%= movie.overview %></p>
+            </div>
+        </div>
+
+    </div>
+    <% }); %>
+
+</main>
+</body>
+
+</html>

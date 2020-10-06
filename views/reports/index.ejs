@@ -2,37 +2,12 @@
 <main>
     <div class="movie-search">
         <h2>search for a movie</h2>
-        <form action="/movies">
+        <form method="GET" action="/movies/">
             <input type="text" placeholder="Movie title here..." name="search" required>
             <input type="submit" value="Search">
         </form>
-
     </div>
 
-    <% if (user) { %>
-    <div id="new-post">
-        <h2>what are you watching now?</h2>
-        <form method="POST" action="/reports">
-            <label>Title:
-                <input type="text" name="movie" autocomplete="off" required>
-            </label><br>
-            <label>Report:
-                <input type="text" name="content" autocomplete="off" required>
-            </label><br>
-            <label>Rating:
-                <select name="rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5" selected>5</option>
-                </select></label>
-            <input type="submit" value="Report">
-        </form>
-    </div>
-    <% } else { %>
-    <div>you must log in to post.</div>
-    <% } %>
     <% report.forEach(function(r) { %>
     <div class="each-report">
         <div id="user-report">

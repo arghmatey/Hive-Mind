@@ -93,7 +93,7 @@ nav .user-name {
   border-radius: 50%;
 }
 
-.each-report, .movie-search, #new-post, #user-profile {
+.movie-search, .each-report, .each-movie, #new-post, #user-profile {
   width: 100%;
   max-width: 690px;
   border-radius: 5px;
@@ -132,7 +132,7 @@ input[type="submit"] {
   margin-left: 10px;
 }
 
-#user-report {
+#user-report, #movie-info {
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
@@ -151,7 +151,7 @@ h4, p {
   width: 100%;
 }
 
-#user-input>* {
+#user-input>*, #title-desc>* {
   margin-bottom: 5px;
 }
 

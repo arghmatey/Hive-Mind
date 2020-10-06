@@ -43,7 +43,7 @@ app.use('/', commentsRouter);
 app.use('/', indexRouter);
 app.use('/reports', reportsRouter);
 app.use('/', usersRouter);
-app.use('/', moviesRouter);
+app.use('/movies', moviesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
