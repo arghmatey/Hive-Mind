@@ -5,9 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
-  <link
-    href="https://css.gg/c?=|bot|erase|film|games|heart|pen|smartphone-chip|smartphone-ram|smile-neutral|smile-sad|smile|terminal|trash"
-    rel="stylesheet" />
+  <link href="https://css.gg/search.css" rel="stylesheet" />
   <script defer src="/javascripts/main.js"></script>
   <title>Hive Mind</title>
 </head>
@@ -15,6 +13,13 @@
 <body>
   <nav>
     <h1 class="brand-logo left">Hive Mind</h1>
+
+    <div class="search-container">
+      <form method="GET" action="/movies">
+        <input type="text" placeholder="Search movie titles" name="search" required>
+        <button type="submit"><i class="gg-search"></i></button>
+      </form>
+    </div>
 
     <div id="login-links">
       <% if (user) { %>

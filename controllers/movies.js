@@ -30,7 +30,7 @@ function movieSearch(req, res) {
             if (movies.page <= movies.total_pages) {
                 gatherMovies();
             } else {
-                res.render('movies/index', { allResults: allResults, user: req.user })
+                res.render('movies/index', { search: search, allResults: allResults, user: req.user })
             }
             page++;
         })
@@ -41,7 +41,6 @@ function show(req, res) {
     const movieURL = 'https://api.themoviedb.org/3/movie/' + req.params.id + '?api_key=' + token + '&language=en-US';
     request(movieURL, function (err, response, body) {
         const movieData = JSON.parse(body);
-        console.log(movieData);
         res.render('movies/show', { movie: movieData, user: req.user });
     });
 }

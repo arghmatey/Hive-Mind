@@ -1,12 +1,5 @@
 <% include ../partials/header %>
 <main>
-    <div class="movie-search">
-        <h2>search for a movie</h2>
-        <form method="GET" action="/movies/">
-            <input type="text" placeholder="Movie title here..." name="search" required>
-            <input type="submit" value="Search">
-        </form>
-    </div>
 
     <% report.forEach(function(r) { %>
     <div class="each-report">

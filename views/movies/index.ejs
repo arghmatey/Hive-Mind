@@ -1,14 +1,8 @@
 <% include ../partials/header %>
 
 <main>
-    <div class="movie-search">
-        <h2>search for a movie</h2>
-        <form method="GET" action="/movies">
-            <input type="text" placeholder="Movie title here..." name="search" required>
-            <input type="submit" value="Search">
-        </form>
 
-    </div>
+    <h2>Search results for "<%= search %>":</h2>
 
     <% allResults.forEach(function(movie) { %>
     <div class="each-movie">
@@ -24,7 +18,6 @@
                 <p id="movie-desc"><%= movie.overview %></p>
             </div>
         </div>
-
     </div>
     <% }); %>
 
