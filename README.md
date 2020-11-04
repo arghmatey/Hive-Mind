@@ -3,9 +3,6 @@ HiveMind
 
 HiveMind is a community forum that allows SciFi fans to share what share what movie or tv show they are currently watching. A comment section is available on each report connect users with similar SciFi interests! Viewing other user's profiles displays that user's current and previously watched entertainment. 
 
-
-![Home Screen](public/images/home-page.png)
-
 ---
 
 #### Technologies Used:
