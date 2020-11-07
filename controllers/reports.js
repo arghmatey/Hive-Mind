@@ -1,12 +1,12 @@
 const User = require('../models/user');
 const Report = require('../models/report');
+const movieCtrl = require('../controllers/movies');
 
 const request = require('request');
 const token = process.env.API_KEY;
 
 module.exports = {
   index,
-  new: newReport,
   create,
   delete: deleteOne,
   update
@@ -17,12 +17,6 @@ function index(req, res, next) {
     if (err) return res.redirect('./');
     res.render('reports/index', { report, user: req.user });
   })
-}
-
-function newReport(req, res) {
-  console.log(req);
-  console.log(res);
-  res.render('reports/new', { title: 'Create new Report', user: req.user });
 }
 
 function create(req, res) {

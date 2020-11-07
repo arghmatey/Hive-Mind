@@ -37,9 +37,13 @@
         <div>Have you watched this movie? Share what you thought:</div>
         <br />
         <form method="POST" action="/reports">
-            <label>Title:
-                <input type="text" name="movie" autocomplete="off" value="<%= movie.title %>" readonly>
-            </label><br>
+            <input type="hidden" name="movie.id" autocomplete="off" value="<%= movie.id %>" readonly>
+            <input type="hidden" name="movie.title" autocomplete="off" value="<%= movie.title %>" readonly>
+            <% if(movie.poster_path) { %>
+            <input type="hidden" name="movie.poster" autocomplete="off" value="<%= movie.poster_path %>" readonly>
+            <% } else { %>
+            <input type="hidden" name="movie.poster" autocomplete="off" value="/images/defaultposter.png" readonly>
+            <% } %>
             <label>Report:
                 <input type="text" name="content" autocomplete="off" required>
             </label><br>

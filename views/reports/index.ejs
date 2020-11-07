@@ -4,7 +4,7 @@
     <% report.forEach(function(r) { %>
     <div class="each-report">
         <div id="user-report">
-            <img class="poster" src="/images/defaultposter.png">
+            <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= r.movie.poster %>">
             <div id="user-input">
                 <div id="user-info">
                     <div>
@@ -16,7 +16,7 @@
                         <%= r.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
                     </p>
                 </div>
-                <h3 id="report-movie"><%= r.movie %></h3>
+                <h3 id="report-movie"><%= r.movie.title %></h3>
                 <p><%= r.rating %>/5 - <%= r.content %></p>
             </div>
         </div>

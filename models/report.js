@@ -17,17 +17,17 @@ const reportSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  movie: String,
+  movie: {
+    id: Number,
+    title: String,
+    poster: String
+  },
   content: String,
   rating: {
     type: Number,
     min: 1,
     max: 5
   },
-  usersWatching: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  }],
   comments: [commentSchema]
 }, {
   timestamps: true
