@@ -1,9 +1,5 @@
 const User = require('../models/user');
 const Report = require('../models/report');
-const movieCtrl = require('../controllers/movies');
-
-const request = require('request');
-const token = process.env.API_KEY;
 
 module.exports = {
   index,
