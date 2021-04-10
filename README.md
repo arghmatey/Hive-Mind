@@ -6,7 +6,7 @@ HiveMind is a community forum that allows SciFi fans to share what share what mo
 ---
 
 #### Technologies Used:
-Node.js, Express, MongoDB, Mongoose, Javascript, HTML, CSS
+Node.js, Express, MongoDB, Mongoose, Javascript, EJS, HTML, CSS
 
 ---
 
