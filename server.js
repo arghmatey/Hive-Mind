@@ -12,12 +12,6 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 
-var commentsRouter = require('./routes/comments');
-var indexRouter = require('./routes/index');
-var reportsRouter = require('./routes/reports');
-var usersRouter = require('./routes/users');
-var moviesRouter = require('./routes/movies');
-
 var app = express();
 
 // view engine setup
@@ -39,11 +33,12 @@ app.use(passport.session());
 
 app.use(methodOverride('_method'));
 
-app.use('/', commentsRouter);
-app.use('/', indexRouter);
-app.use('/reports', reportsRouter);
-app.use('/', usersRouter);
-app.use('/movies', moviesRouter);
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/movies'));
+app.use('/tvshows', require('./routes/tvshows'));
+app.use('/user', require('./routes/users'));
+app.use('/', require('./routes/watchlist'));
+app.use('/', require('./routes/reviews'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
