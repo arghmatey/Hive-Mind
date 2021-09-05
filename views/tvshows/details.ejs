@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<main>
+
+    <div class="panel">
+        <div>
+            <div id="title-info">
+                <h2><%= tv.name %></h2>
+            </div>
+            <div id="movie-img">
+                <% if(tv.poster_path) { %>
+                <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= tv.poster_path %>">
+                <% } else { %>
+                <img class="poster-big" src="/images/defaultposter.png">
+                <% } %>
+            </div>
+            <div>
+                <br />
+                <p><%= tv.overview %></p>
+                <br />
+                <p>First Aired: <%= tv.first_air_date %></p>
+                <p>Genres: <% tv.genres.forEach(function(genre, idx) { %>
+                    <% if(idx < tv.genres.length-1) { %>
+                    <%= genre.name %>,
+                    <% } else { %>
+                    <%= genre.name %>
+                    <% }}) %>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

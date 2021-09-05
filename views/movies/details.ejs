@@ -1,0 +1,68 @@
+<% include ../partials/header %>
+
+<main>
+
+    <div class="panel">
+        <div>
+            <div id="title-info">
+                <h2><%= movie.title %></h2>
+                <h3><%= movie.tagline %></h3>
+            </div>
+            <div id="movie-img">
+                <% if(movie.poster_path) { %>
+                <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
+                <% } else { %>
+                <img class="poster-big" src="/images/defaultposter.png">
+                <% } %>
+            </div>
+            <div>
+                <br />
+                <p><%= movie.overview %></p>
+                <br />
+                <p>Released: <%= movie.release_date %></p>
+                <p>Runtime: <%= movie.runtime %> minutes</p>
+                <p>Genres: <% movie.genres.forEach(function(genre, idx) { %>
+                    <% if(idx < movie.genres.length-1) { %>
+                    <%= genre.name %>,
+                    <% } else { %>
+                    <%= genre.name %>
+                    <% }}) %>
+                </p>
+            </div>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <% if(user) { %>
+        <div>
+            <form method="POST" action="/users/<%= user._id %>/movie/<%= movie.id %>">
+                <button type="submit">Add to Watchlist</button>
+            </form>
+            <div>Write a Review</div>
+            <form method="POST" action="/<%= movie.id %>/reviews">
+                <label>Review:
+                <input type="text" name="content" autocomplete="off" required>
+                </label><br>
+                <label>Rating:
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                </label>
+                <input type="submit" value="send review">
+            </form>                
+            <% } else { %>
+                <a href="/auth/google">Login with Google</a><span> to add to watchlist and leave a review.</span>
+            <% } %>
+        </div>
+    </div>
+    
+</main>
+</body>
+
+</html>
