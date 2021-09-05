@@ -1,15 +1,22 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const watchListSchema = new Schema({
+  id: Number,
+}, {
+  timestamps: true
+});
+
 const userSchema = new Schema({
   name: String,
   email: String,
   avatar: String,
   googleId: String,
-  reports: [{
+  reviews: [{
     type: Schema.Types.ObjectId,
-    ref: 'Report'
-  }]
+    ref: 'Review'
+  }],
+  watchList: [watchListSchema]
 }, {
   timestamps: true
 });
