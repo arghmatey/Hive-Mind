@@ -1,23 +1,45 @@
-<!DOCTYPE html>
-<html>
+<% include ./partials/header %>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hive Mind</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body id="landing-page">
-  <div id="welcome">
-    <h1>Hive Mind</h1>
-    <p>join us</p>
-    <div id="login-links">
-      <%  { %>
-      <a href="/auth/google">Login with Google</a>
-      <% } %>
+<main>
+    <div class="pop-movies">
+        <h2 class="popular-header">Popular Movies</h2>
+        <div class="scrollmenu">
+            <% popularMovies.forEach(function(movie) { %>
+                <div class="movie-card">
+                    <a href="/movies/<%= movie.id %>">
+                        <% if(movie.poster_path) { %>
+                            <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
+                        <% } else { %>
+                            <img class="poster-big" src="/images/defaultposter.png">
+                        <% } %>
+                        <div>
+                            <h4 id="movie-title"><%= movie.title %></h4>
+                        </div>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
     </div>
-  </div>
+    
+    <div class="pop-tv">
+        <h2 class="popular-header">Popular TV Shows</h2>
+        <div class="scrollmenu">
+            <% popularTV.forEach(function(tv) { %>
+                <div class="tv-card">
+                    <a href="/tvshows/<%= tv.id %>">
+                        <% if(tv.poster_path) { %>
+                            <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= tv.poster_path %>">
+                        <% } else { %>
+                            <img class="poster-big" src="/images/defaultposter.png">
+                        <% } %>
+                        <h4 id="movie-title"><%= tv.name %></h4>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+</main>
 </body>
 
 </html>

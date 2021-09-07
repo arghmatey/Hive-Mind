@@ -4,62 +4,33 @@
 
     <div id="user-profile">
         <div id="user-card">
-            <img src="<%= showUser.avatar %>" id="profile-avatar">
+            <img src="<%= user.avatar %>" id="profile-avatar">
         </div>
-        <div class="user-name"><%= showUser.name %></div>
+        <div class="user-name"><%= user.name %></div>
 
-        <a href="/reports">go back home</a>
+        <a href="/">go back home</a>
     </div>
 
-    <% showUser.reports.forEach(function(r) { %>
-    <div class="each-report">
-        <div id="user-report">
-            <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= r.movie.poster %>">
-            <div id="user-input">
-                <div id="user-info">
-                    <div>
-                        <img src="<%= showUser.avatar %>" class="user-avatar">
-                        <a href="/users/<%= r.userReporting._id %>" class="user-name"><%= showUser.name %></a>
+    <div>
+        <% watchList.forEach(function(movie) { %>
+            <div class="panel">
+                <div id="movie-info">
+                    <% if(movie.poster_path) { %>
+                    <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
+                    <% } else { %>
+                    <img class="poster" src="/images/defaultposter.png">
+                    <% } %>
+                    <div id="title-desc">
+                        <h3 id="movie-title"><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h3>
+                        <p><%= movie.release_date %></p>
+                        <p id="movie-desc"><%= movie.overview %></p>
+                        <form action="/users/<%= user._id %>/movie/<%= movie.id %>?_method=DELETE" class="delete-form" method="POST">
+                            <button type="submit">remove from watchlist</button>
+                        </form>
                     </div>
-                    <p>
-                        <%= r.createdAt.toLocaleDateString() %>
-                        <%= r.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
-                    </p>
                 </div>
-                <h3 id="report-movie"><%= r.movie.title %></h3>
-                <p><%= r.rating %>/5 - <%= r.content %></p>
             </div>
-        </div>
+        <% }); %>
 
-        <div class="options-container">
-            <form class="new-comment" method="POST" action="/reports/<%= r._id %>/comments">
-                <input id="comment-input" type="text" name="text" placeholder="Comment as <%= user.name %>..."
-                    autocomplete="off" required>
-                <input type="submit" value="Post">
-            </form>
-        </div>
-
-        <div class="reports-comments">
-            <a href="javascript:void(0);" id="comment-count" class="collapsible">‣ <%= r.comments.length %>
-                Comments</a>
-            <div class="content">
-                <% if (r.comments.length) { %>
-                <% r.comments.forEach(function(c) { %>
-                <div class="each-comment">
-                    <div id="user-info">
-                        <a href="/users/<%= c.userName._id %>" class="user-name"><%= c.userName %></a>
-                        <p>
-                            <%= c.createdAt.toLocaleDateString() %>
-                            <%= c.createdAt.toLocaleTimeString('en-US', {hour:"2-digit", minute: "2-digit"} ) %>
-                        </p>
-                    </div>
-                    <p><%= c.text %></p>
-                </div>
-                <% }); %>
-                <% } else { %>
-                <% } %>
-            </div>
-        </div>
     </div>
-    <% }) %>
 </main>

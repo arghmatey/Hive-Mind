@@ -12,7 +12,7 @@
 
 <body>
   <nav>
-    <h1 class="brand-logo left">Hive Mind</h1>
+    <a href="/"><h1 class="brand-logo left">Hive Mind</h1></a>
 
     <div class="search-container">
       <form method="GET" action="/movies">
@@ -24,12 +24,11 @@
     <div id="login-links">
       <% if (user) { %>
       <div id="user">
-        <a href="/users/<%= user._id %>" class="user-name"><%= user.name %></a>
-        <span>|</span>
+        <a href="/user/<%= user._id %>"><img src="<%= user.avatar %>" class="user-avatar" /></a>
         <a href="/logout">Log Out</a>
       </div>
       <% } else { %>
-      <a href="/auth/google">Login with Google</a>
+      <a href="/signup">Login</a>
       <% } %>
     </div>
   </nav>

@@ -5,7 +5,7 @@
     <h2>Search results for "<%= search %>":</h2>
 
     <% allResults.forEach(function(movie) { %>
-    <div class="each-movie">
+    <div class="panel">
         <div id="movie-info">
             <% if(movie.poster_path) { %>
             <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
