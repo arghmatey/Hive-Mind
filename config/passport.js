@@ -1,5 +1,9 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var JWTStrategy = require('passport-jwt').Strategy;
+var ExtractJWT = require('passport-jwt').ExtractJwt;
+var JWT_SECRET = process.env.JWT_SECRET;
 var User = require('../models/user');
 
 passport.use(new GoogleStrategy({
@@ -28,10 +32,68 @@ passport.use(new GoogleStrategy({
         newUser.save(function (err) {
           if (err) return cb(err);
           return cb(null, newUser);
-        })
+        });
+      };
+    });
+  }
+));
+
+passport.use(
+  'login',
+  new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ 'email': username }, function(err, user) {
+      if (err) return done(err);
+      if (!user) {
+        return done(null, false, { message: 'Invalid username.' });
       }
+      if ((user.password != password)) {
+        return done(null, false, { message: 'Invalid password.' });
+      }
+      return done(null, user);
     })
-  }));
+  }
+))
+
+passport.use(
+  'signup',
+  new LocalStrategy({
+    passReqToCallback: true
+  },
+  function(req, username, password, done) {
+    const newUser = new User({
+      name: req.body.name,
+      email: username,
+      password
+    });
+    newUser.save(function(err) {
+      if (err) {
+        return done(err);
+      }
+      return done(null, newUser);
+    })
+  }
+))
+
+// authentication for protected routes 
+// passport.use(new JWTStrategy({
+//   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+//   secretOrKey: JWT_SECRET,
+// }, 
+//   function(jwt_payload, done){
+//     console.log(jwt_payload)
+//     TokenUser.findOne({id: jwt_payload.sub}, function (err, user) {
+//       if (err) {
+//         return done(err, false);
+//       }
+//       if (user) {
+//         return done(null, user);
+//       } else {
+//         return done(null, false);
+//       }
+//     })
+//   }
+// ))
 
 passport.serializeUser(function (user, done) {
   done(null, user.id)

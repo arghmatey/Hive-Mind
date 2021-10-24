@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+<main>
+
+    <form method="POST" action="/local-login">
+        <div class="form-container">
+            <h1>Login</h1>
+            <hr>
+
+            <label for="username">Email</label>
+            <input type="text" placeholder="Email" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+        
+            <button type="submit" class="loginbtn">Login</button>
+        </div>
+    </form>
+
+    <a href="/auth/google">Continue with Google</a>
+</main>

@@ -36,7 +36,7 @@ app.use(methodOverride('_method'));
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/movies'));
 app.use('/tvshows', require('./routes/tvshows'));
-app.use('/user', require('./routes/users'));
+app.use('/', require('./routes/users'));
 app.use('/', require('./routes/watchlist'));
 app.use('/', require('./routes/reviews'));
 
