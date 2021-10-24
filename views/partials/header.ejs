@@ -15,8 +15,8 @@
     <a href="/"><h1 class="brand-logo left">Hive Mind</h1></a>
 
     <div class="search-container">
-      <form method="GET" action="/movies">
-        <input type="text" placeholder="Search movie titles" name="search" required>
+      <form method="GET" action="/search">
+        <input type="text" placeholder="Search for Sci-Fis" name="search" required>
         <button type="submit"><i class="gg-search"></i></button>
       </form>
     </div>
@@ -24,11 +24,17 @@
     <div id="login-links">
       <% if (user) { %>
       <div id="user">
-        <a href="/user/<%= user._id %>"><img src="<%= user.avatar %>" class="user-avatar" /></a>
+        <a href="/users/<%= user.id %>">
+          <img src="<%= user.avatar %>" class="user-avatar" />
+          <span><%= user.name %></span>
+        </a>
         <a href="/logout">Log Out</a>
       </div>
       <% } else { %>
-      <a href="/signup">Login</a>
+      <div id="auth">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      </div>
       <% } %>
     </div>
   </nav>
