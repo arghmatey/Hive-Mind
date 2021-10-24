@@ -1,8 +1,9 @@
 <% include ./partials/header %>
 
 <main>
-    <div class="pop-movies">
+    <section class="page-card page-card-long pop-movies">
         <h2 class="popular-header">Popular Movies</h2>
+        <a href="/movies/popular">see all</a>
         <div class="scrollmenu">
             <% popularMovies.forEach(function(movie) { %>
                 <div class="movie-card">
@@ -12,17 +13,16 @@
                         <% } else { %>
                             <img class="poster-big" src="/images/defaultposter.png">
                         <% } %>
-                        <div>
                             <h4 id="movie-title"><%= movie.title %></h4>
-                        </div>
                     </a>
                 </div>
             <% }) %>
         </div>
-    </div>
+    </section>
     
-    <div class="pop-tv">
+    <section class="page-card page-card-long pop-tv">
         <h2 class="popular-header">Popular TV Shows</h2>
+        <a href="/tvshows/popular">see all</a>
         <div class="scrollmenu">
             <% popularTV.forEach(function(tv) { %>
                 <div class="tv-card">
@@ -37,7 +37,47 @@
                 </div>
             <% }) %>
         </div>
-    </div>
+    </section>
+
+    <section class="page-card page-card-long pop-tv">
+        <h2 class="popular-header">Trending Movies</h2>
+        <a href="/tvshows/popular">see all</a>
+        <div class="scrollmenu">
+            <% trending.forEach(function(trend) { %>
+                <% if (trend.media_type == 'movie') { %>
+                    <div class="tv-card">
+                        <a href="/movies/<%= trend.id %>">
+                            <% if(trend.poster_path) { %>
+                                <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= trend.poster_path %>">
+                            <% } else { %>
+                                <img class="poster-big" src="/images/defaultposter.png">
+                            <% } %>
+                            <h4 id="movie-title"><%= trend.name %></h4>
+                        </a>
+                    </div>
+                <% }}) %>
+        </div>
+    </section>
+
+    <section class="page-card page-card-long pop-tv">
+        <h2 class="popular-header">Trending TV Shows</h2>
+        <a href="/tvshows/popular">see all</a>
+        <div class="scrollmenu">
+            <% trending.forEach(function(trend) { %>
+                <% if (trend.media_type == 'tv') { %>
+                    <div class="tv-card">
+                        <a href="/tvshows/<%= trend.id %>">
+                            <% if (trend.poster_path) { %>
+                                <img class="poster-big" src="https://image.tmdb.org/t/p/w200/<%= trend.poster_path %>">
+                            <% } else { %>
+                                <img class="poster-big" src="/images/defaultposter.png">
+                            <% } %>
+                            <h4 id="movie-title"><%= trend.name %></h4>
+                        </a>
+                    </div>
+                <% }}) %>
+        </div>
+    </section>
 
 </main>
 </body>
