@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
-  userReviewing: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  movieId: Number,
+  sciFiId: Number,
   content: String,
   rating: {
     type: Number,
