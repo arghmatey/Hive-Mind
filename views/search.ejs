@@ -1,0 +1,27 @@
+<% include ./partials/header %>
+
+<main>
+
+    <h2>Search results for "<%= search %>":</h2>
+
+    <% allResults.forEach(function(result) { %>
+    <div class="page-card">
+        <div id="movie-info">
+            <% if(result.poster_path) { %>
+            <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= result.poster_path %>">
+            <% } else { %>
+            <img class="poster" src="/images/defaultposter.png">
+            <% } %>
+            <div id="title-desc">
+                <h3 id="result-title"><a href="/movies/<%= result.id %>"><%= result.title %></a></h3>
+                <p><%= result.release_date %></p>
+                <p id="result-desc"><%= result.overview %></p>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+
+</main>
+</body>
+
+</html>
