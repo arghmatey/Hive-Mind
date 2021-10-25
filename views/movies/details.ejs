@@ -2,7 +2,7 @@
 
 <main>
 
-    <div class="panel">
+    <div class="page-card">
         <div>
             <div id="title-info">
                 <h2><%= movie.title %></h2>
@@ -36,30 +36,53 @@
         <br />
 
         <% if(user) { %>
-        <div>
-            <form method="POST" action="/users/<%= user._id %>/movie/<%= movie.id %>">
-                <button type="submit">Add to Watchlist</button>
-            </form>
-            <div>Write a Review</div>
-            <form method="POST" action="/<%= movie.id %>/reviews">
-                <label>Review:
-                <input type="text" name="content" autocomplete="off" required>
-                </label><br>
-                <label>Rating:
-                    <select name="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5" selected>5</option>
-                    </select>
-                </label>
-                <input type="submit" value="send review">
-            </form>                
-            <% } else { %>
-                <a href="/auth/google">Login with Google</a><span> to add to watchlist and leave a review.</span>
-            <% } %>
-        </div>
+            <div>
+                <form method="POST" action="/users/<%= user._id %>/movie/<%= movie.id %>">
+                    <button type="submit">Add to Watchlist</button>
+                </form>
+            <br />
+            <hr />
+            <br />
+                <div>Write a Review</div>
+                <form method="POST" action="/reviews/<%= movie.id %>">
+                    <label>Review:
+                    <input type="text" name="content" autocomplete="off" required>
+                    </label><br>
+                    <label>Rating:
+                        <select name="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="send review">
+                </form>
+                <% } else { %>
+                    <a href="/auth/google">Login with Google</a><span> to add to watchlist and leave a review.</span>
+                <% } %>
+            </div>
+
+        <% if(reviews) { %>
+            <br />
+            <hr />
+            <br />
+            <% reviews.forEach(function(review) { %>
+                <div class="user-review">
+                    <div class="user-info">
+                        <a href="/users/<%= review.user._id %>" class="user-name"><%= review.user.name %></a>
+                        <span><%= review.createdAt.toDateString() %> <%= review.createdAt.toLocaleTimeString('en-US') %></span>
+                    </div>
+                    <div class="user-input">
+                        <p id="report-content"><%= review.content %></p>
+                        <div id="report-rating">Rating: <%= review.rating %>/5</div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No reviews yet.</p>
+        <% } %>
     </div>
     
 </main>
