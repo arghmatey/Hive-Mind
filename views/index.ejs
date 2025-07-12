@@ -3,7 +3,6 @@
 <main>
     <section class="page-card page-card-long pop-movies">
         <h2 class="popular-header">Popular Movies</h2>
-        <a href="/movies/popular">see all</a>
         <div class="scrollmenu">
             <% popularMovies.forEach(function(movie) { %>
                 <div class="movie-card">
@@ -22,7 +21,6 @@
     
     <section class="page-card page-card-long pop-tv">
         <h2 class="popular-header">Popular TV Shows</h2>
-        <a href="/tvshows/popular">see all</a>
         <div class="scrollmenu">
             <% popularTV.forEach(function(tv) { %>
                 <div class="tv-card">
@@ -41,7 +39,6 @@
 
     <section class="page-card page-card-long pop-tv">
         <h2 class="popular-header">Trending Movies</h2>
-        <a href="/tvshows/popular">see all</a>
         <div class="scrollmenu">
             <% trending.forEach(function(trend) { %>
                 <% if (trend.media_type == 'movie') { %>
@@ -61,7 +58,6 @@
 
     <section class="page-card page-card-long pop-tv">
         <h2 class="popular-header">Trending TV Shows</h2>
-        <a href="/tvshows/popular">see all</a>
         <div class="scrollmenu">
             <% trending.forEach(function(trend) { %>
                 <% if (trend.media_type == 'tv') { %>
