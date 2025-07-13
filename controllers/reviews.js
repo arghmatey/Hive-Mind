@@ -9,7 +9,7 @@ function create(req, res) {
   try {
     const user = User.findById(req.user._id);
     req.body.user = user;
-    req.body.sciFiId = req.params.id;
+    req.body.movieId = req.params.id;
 
     const review = new Review(req.body);
     review.save();
