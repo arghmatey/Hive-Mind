@@ -1,28 +1,40 @@
-const request = require('request');
-const User = require('../models/user');
+const request = require("request");
+const User = require("../models/user");
 
 module.exports = {
   create,
   delete: removeMovie,
 };
 
-function create(req, res) {
-  User.findById(req.params.uid, function (err, user) {
-    if (err) return res.redirect('/error');
-      req.body.id = req.params.mid;
-      user.watchList.push(req.body);
-      user.save(function (err) {
-        res.redirect(`back`);
-      });
-  });
+async function create(req, res) {
+  try {
+    const user = await User.findById(req.params.uid);
+    req.body.id = req.params.mid;
+
+    // saving movie id as the body of the watchlist object
+    // TODO: evaluate and possibly redesign database structure
+    user.watchList.push(req.body);
+    user.save();
+
+    res.redirect(`back`);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function removeMovie(req, res) {
-  User.findById(req.params.uid, function (err, user) {
-    if (err) return res.redirect('/error');
-    user.watchList.remove(req.params.mid);
-    user.save(function (err) {
-      res.redirect(`back`);
-    });
-  });
+async function removeMovie(req, res) {
+  try {
+    const user = await User.findById(req.params.uid);
+    req.body.id = req.params.mid;
+
+    const movieIndex = user.watchList.findIndex(
+      (movie) => movie.id === req.params.mid
+    );
+    user.watchList.splice(movieIndex, 1);
+    user.save();
+
+    res.redirect(`back`);
+  } catch (error) {
+    console.error(error);
+  }
 }

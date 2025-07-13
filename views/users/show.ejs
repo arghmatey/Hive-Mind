@@ -1,36 +1,43 @@
 <% include ../partials/header %>
 
 <main>
+  <div id="user-profile">
+    <div id="user-card">
+      <img src="<%= user.avatar %>" id="profile-avatar" />
+    </div>
+    <div class="user-name"><%= user.name %></div>
 
-    <div id="user-profile">
-        <div id="user-card">
-            <img src="<%= user.avatar %>" id="profile-avatar">
+    <a href="/">go back home</a>
+  </div>
+
+  <div>
+    <% user.watchList.forEach(function(movie) { %>
+    <div class="panel">
+      <div id="movie-info">
+        <% if(movie.poster_path) { %>
+        <img
+          class="poster"
+          src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>"
+        />
+        <% } else { %>
+        <img class="poster" src="/images/defaultposter.png" />
+        <% } %>
+        <div id="title-desc">
+          <h3 id="movie-title">
+            <a href="/movies/<%= movie.id %>"><%= movie.title %></a>
+          </h3>
+          <p><%= movie.release_date %></p>
+          <p id="movie-desc"><%= movie.overview %></p>
+          <form
+            action="/users/<%= user._id %>/movie/<%= movie.id %>?_method=DELETE"
+            class="delete-form"
+            method="POST"
+          >
+            <button type="submit">remove from watchlist</button>
+          </form>
         </div>
-        <div class="user-name"><%= user.name %></div>
-
-        <a href="/">go back home</a>
+      </div>
     </div>
-
-    <div>
-        <% watchList.forEach(function(movie) { %>
-            <div class="panel">
-                <div id="movie-info">
-                    <% if(movie.poster_path) { %>
-                    <img class="poster" src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>">
-                    <% } else { %>
-                    <img class="poster" src="/images/defaultposter.png">
-                    <% } %>
-                    <div id="title-desc">
-                        <h3 id="movie-title"><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h3>
-                        <p><%= movie.release_date %></p>
-                        <p id="movie-desc"><%= movie.overview %></p>
-                        <form action="/users/<%= user._id %>/movie/<%= movie.id %>?_method=DELETE" class="delete-form" method="POST">
-                            <button type="submit">remove from watchlist</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        <% }); %>
-
-    </div>
+    <% }); %>
+  </div>
 </main>
