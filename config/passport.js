@@ -38,18 +38,21 @@ passport.use(
 
 passport.use(
   "login",
-  new LocalStrategy(function (username, password, done) {
-    User.findOne({ email: username }),
-      function (err, user) {
-        if (err) return done(err);
-        if (!user) {
-          return done(null, false, { message: "Invalid username." });
-        }
-        if (user.password != password) {
-          return done(null, false, { message: "Invalid password." });
-        }
-        return done(null, user);
-      };
+  new LocalStrategy(async function (username, password, done) {
+    try {
+      const user = await User.findOne({ email: username });
+
+      if (!user) {
+        return done(null, false, { message: "Invalid username." });
+      }
+      if (user.password != password) {
+        return done(null, false, { message: "Invalid password." });
+      }
+
+      return done(null, user);
+    } catch (error) {
+      return cb(error);
+    }
   })
 );
 
@@ -59,18 +62,19 @@ passport.use(
     {
       passReqToCallback: true,
     },
-    function (req, username, password, done) {
-      const newUser = new User({
-        name: req.body.name,
-        email: username,
-        password,
-      });
-      newUser.save(function (err) {
-        if (err) {
-          return done(err);
-        }
+    async function (req, username, password, done) {
+      try {
+        const newUser = new User({
+          name: req.body.name,
+          email: username,
+          password,
+        });
+
+        await newUser.save();
         return done(null, newUser);
-      });
+      } catch (error) {
+        return done(error);
+      }
     }
   )
 );
