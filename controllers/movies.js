@@ -1,5 +1,5 @@
 const request = require("request");
-const Review = require("../models/review");
+const Report = require("../models/report");
 const token = process.env.API_KEY;
 
 module.exports = {
@@ -63,8 +63,8 @@ function moviePopular(req, res) {
 }
 
 async function show(req, res) {
-  // Find all reviews for the selected movie
-  const reviews = await Review.find({ movieId: req.params.id })
+  // Find all reports for the selected movie
+  const reports = await Report.find({ movieId: req.params.id })
     .populate("user")
     .exec();
   const movieURL =
@@ -78,7 +78,7 @@ async function show(req, res) {
     res.render("movies/details", {
       movie: movieData,
       user: req.user,
-      reviews: reviews,
+      reports: reports,
     });
   });
 }

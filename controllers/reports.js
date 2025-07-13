@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const Review = require("../models/review");
+const Report = require("../models/report");
 
 module.exports = {
   create,
@@ -11,9 +11,9 @@ function create(req, res) {
     req.body.user = user;
     req.body.movieId = req.params.id;
 
-    const review = new Review(req.body);
-    review.save();
-    user.reviews.push(review);
+    const report = new Report(req.body);
+    report.save();
+    user.reports.push(report);
     user.save();
 
     user.watchList.remove(req.params.mid);

@@ -1,6 +1,6 @@
 const request = require("request");
 const token = process.env.API_KEY;
-const Review = require("../models/review");
+const Report = require("../models/report");
 const rootURL = "https://api.tmdb.org/3/search/tv?api_key=" + token + "&query=";
 
 module.exports = {
@@ -24,8 +24,8 @@ function tvPopular(req, res) {
 }
 
 async function show(req, res) {
-  // Find all reviews for the selected tv show
-  const reviews = await Review.find({ movieId: req.params.id })
+  // Find all reports for the selected tv show
+  const reports = await Report.find({ movieId: req.params.id })
     .populate("user")
     .exec();
   const tvURL =
@@ -39,7 +39,7 @@ async function show(req, res) {
     res.render("tvshows/details", {
       tv: tvData,
       user: req.user,
-      reviews: reviews,
+      reports: reports,
     });
   });
 }

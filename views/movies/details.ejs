@@ -43,9 +43,9 @@
             <br />
             <hr />
             <br />
-                <div>Write a Review</div>
-                <form method="POST" action="/reviews/<%= movie.id %>">
-                    <label>Review:
+                <div>Write a Report</div>
+                <form method="POST" action="/reports/<%= movie.id %>">
+                    <label>Report:
                     <input type="text" name="text" autocomplete="off" required>
                     </label><br>
                     <label>Rating:
@@ -57,31 +57,31 @@
                             <option value="5" selected>5</option>
                         </select>
                     </label>
-                    <input type="submit" value="send review">
+                    <input type="submit" value="send report">
                 </form>
                 <% } else { %>
-                    <a href="/auth/google">Login with Google</a><span> to add to watchlist and leave a review.</span>
+                    <a href="/auth/google">Login with Google</a><span> to add to watchlist and leave a report.</span>
                 <% } %>
             </div>
 
-        <% if(reviews) { %>
+        <% if(reports) { %>
             <br />
             <hr />
             <br />
-            <% reviews.forEach(function(review) { %>
-                <div class="user-review">
+            <% reports.forEach(function(report) { %>
+                <div class="user-report">
                     <div class="user-info">
-                        <a href="/users/<%= review.user._id %>" class="user-name"><%= review.user.name %></a>
-                        <span><%= review.createdAt.toDateString() %> <%= review.createdAt.toLocaleTimeString('en-US') %></span>
+                        <a href="/users/<%= report.user._id %>" class="user-name"><%= report.user.name %></a>
+                        <span><%= report.createdAt.toDateString() %> <%= report.createdAt.toLocaleTimeString('en-US') %></span>
                     </div>
                     <div class="user-input">
-                        <p id="report-text"><%= review.text %></p>
-                        <div id="report-rating">Rating: <%= review.rating %>/5</div>
+                        <p id="report-text"><%= report.text %></p>
+                        <div id="report-rating">Rating: <%= report.rating %>/5</div>
                     </div>
                 </div>
             <% }) %>
         <% } else { %>
-            <p>No reviews yet.</p>
+            <p>No reports yet.</p>
         <% } %>
     </div>
     
